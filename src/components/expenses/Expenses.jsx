@@ -1,104 +1,53 @@
-// more expenses components will be added here
-import { ExpenseItem } from "../expense-item/ExpenseItem";
-import PropTypes from "prop-types";
-import css from "./Expenses.module.css";
-import { ExpenseFilter } from "../expense-filter/ExpenseFilter";
 import { useState } from "react";
-import ExpensesChart from "../ExpenseChart";
-import { ExpenseFilterOne } from "../expense-filter/ExpenseFilterOne";
+import { Expenses } from "./components/expenses/Expenses";
+import { NewExpense } from "./components/new-expense/NewExpense";
 
-export const Expenses = ({ expenses }) => {
-  const [selectedYear, setSelectedYear] = useState("All");
-
-  const yearChangeHandler = () => {
-    setSelectedYear(event.target.value);
+function App() {
+  const [expenses, setExpenses] = useState([
+    {
+      title: "Car Insurance",
+      price: 300,
+      date: new Date(),
+      id: "f1",
+    },
+    {
+      title: "Health Insurance",
+      price: 400,
+      date: new Date(),
+      id: "f2",
+    },
+    {
+      title: "Home Insurance",
+      price: 10000,
+      date: new Date(),
+      id: "f3",
+    },
+    {
+      title: "Life Insurance",
+      price: 99000,
+      date: new Date(),
+      id: "f4",
+    },
+    {
+      title: "air Insurance",
+      price: 911,
+      date: new Date(),
+      id: "f5",
+    },
+  ]);
+  const addNewExpenseHandler = (data) => {
+    const updatedExpenses = [...expenses, data];
+    setExpenses(updatedExpenses);
   };
-
-  const filteredExpenses = expenses.filter((expense) => {
-    if (expense.date.getFullYear().toString() === selectedYear) {
-      return true;
-    }
-    return false;
-  });
-
-  const renderedExpenses = selectedYear === "All" ? expenses : filteredExpenses;
-
-  //my sort
-  const [filterAll, setFilterAll] = useState("По убыванию");
-
-  const allFilter = () => {
-    setFilterAll(event.target.value);
-  };
-
-  const allFilteredExpen = renderedExpenses.sort((a, b) => {
-    if (filterAll === "По возрастанию") {
-      if (a.price > b.price) {
-        return 1;
-      }
-      if (a.price < b.price) {
-        return -1;
-      }
-      return 0;
-    }
-    if (filterAll === "По убыванию") {
-      if (a.price < b.price) {
-        return 1;
-      }
-      if (a.price > b.price) {
-        return -1;
-      }
-      return 0;
-    }
-    if (filterAll === "По новизне") {
-      if (a.date < b.date) {
-        return 1;
-      }
-      if (a.date > b.date) {
-        return -1;
-      }
-      return 0;
-    }
-    if (filterAll === "По названию") {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
-      return 0;
-    }
-  });
-
-  const renderedExpensesAll =
-    selectedYear === "По убыванию" ? expenses : allFilteredExpen;
-
   return (
-    <ul className={css.expenseWrapper}>
-      <div className={css.expenseGrid}>
-        <div>
-          <ExpenseFilterOne value={filterAll} onChange={allFilter} />
-        </div>
-        <div>
-          <ExpenseFilter value={selectedYear} onChange={yearChangeHandler} />
-        </div>
+    <div className="wrapper">
+      <div className="container">
+        <NewExpense onAdd={addNewExpenseHandler} />
+        <Expenses expenses={expenses} />
       </div>
-      <ExpensesChart expenses={renderedExpensesAll} />
-
-      {renderedExpensesAll.map((item) => {
-        return (
-          <ExpenseItem
-            key={item.id}
-            title={item.title}
-            date={item.date}
-            price={item.price}
-          />
-        );
-      })}
-    </ul>
+    </div>
   );
-};
+}
 
-Expenses.propTypes = {
-  expenses: PropTypes.array.isRequired,
-};
+export default App;
 
