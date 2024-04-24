@@ -31,7 +31,7 @@ export const Expenses = ({ expenses }) => {
   };
 
   const allFilteredExpen = renderedExpenses.sort((a, b) => {
-    if (filterAll === "По убыванию") {
+       if (filterAll === "По возрастанию") {
       if (a.price > b.price) {
         return 1;
       }
@@ -40,7 +40,7 @@ export const Expenses = ({ expenses }) => {
       }
       return 0;
     }
-    if (filterAll === "По возрастанию") {
+    if (filterAll === "По убыванию") {
       if (a.price < b.price) {
         return 1;
       }
