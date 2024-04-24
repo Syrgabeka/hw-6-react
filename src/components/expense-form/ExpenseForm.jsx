@@ -7,7 +7,7 @@ import { generateUniqueID } from "../../utils/helpers";
 
 export const ExpenseForm = ({ onShowForm, onAdd }) => {
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [date, setDate] = useState(null);
   const cancelHandler = (event) => {
     event.preventDefault();
