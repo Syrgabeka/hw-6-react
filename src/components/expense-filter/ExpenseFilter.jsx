@@ -5,7 +5,7 @@ export const ExpenseFilter = ({ value, onChange }) => {
   return (
     <div className={css.expenseFilter}>
       <div className={css.expenseFilterControl}>
-        <select value={value} onChange={onChange}>
+        <select className={css.filter_date} value={value} onChange={onChange}>
           <option value="All">All</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
