@@ -16,7 +16,20 @@
 }
 .expenseFilterControl select {
   font: inherit;
-  padding: 0.5rem 3rem;
   font-weight: bold;
   border-radius: 6px;
+}
+.filter_date {
+  padding: 0.5rem 3rem;
+}
+
+.allChange {
+  width: 200px;
+  padding: 5px;
+}
+button {
+  border-radius: 5px;
+  margin-left: 5px;
+  width: 130px;
+  padding: 7px;
 }
