@@ -5,12 +5,16 @@ export const ExpenseFilterOne = ({ value, onChange }) => {
   return (
     <div className={css.expenseFilter}>
       <div className={css.expenseFilterControl}>
-        <select value={value} onChange={onChange}>
+        <select className={css.allChange} value={value} onChange={onChange}>
           <option value="По убыванию">По убыванию</option>
           <option value="По возрастанию">По возрастанию</option>
-          <option value="По новизне">По новизне</option>
-          <option value="По названию">По названию</option>
         </select>
+        <button value="По новизне" onClick={onChange}>
+          По новизне
+        </button>
+        <button value="По названию" onClick={onChange}>
+          По названию
+        </button>
       </div>
     </div>
   );
